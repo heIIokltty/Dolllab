@@ -48,7 +48,6 @@ namespace Dollab_Backend.Controllers
 
             _context.BlockedUsers.Add(blockedUser);
 
-            // Удаляем подписки между этими пользователями
             var follows = await _context.Follows
                 .Where(f =>
                     (f.FollowerId == currentUserId && f.FollowingId == userId) ||
@@ -57,7 +56,6 @@ namespace Dollab_Backend.Controllers
 
             _context.Follows.RemoveRange(follows);
 
-            // Удаляем pending-заявки между этими пользователями
             var requests = await _context.FollowRequests
                 .Where(r =>
                     r.Status == "pending" &&

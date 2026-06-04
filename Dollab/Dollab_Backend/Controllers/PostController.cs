@@ -172,35 +172,41 @@ public class PostController : ControllerBase
         if (post.UserId != userId)
             return Forbid();
 
+        // 1. Удаляем жалобы на пост
+        await _context.Reports
+            .Where(r => r.ReportedPostId == id)
+            .ExecuteDeleteAsync();
+
+        // 2. Получаем id комментариев поста
         var commentIds = await _context.Comments
             .Where(c => c.PostId == id)
             .Select(c => c.Id)
             .ToListAsync();
 
-        var commentLikes = await _context.CommentLikes
-            .Where(l => commentIds.Contains(l.CommentId))
-            .ToListAsync();
+        // 3. Удаляем лайки комментариев
+        if (commentIds.Any())
+        {
+            await _context.CommentLikes
+                .Where(l => commentIds.Contains(l.CommentId))
+                .ExecuteDeleteAsync();
+        }
 
-        _context.CommentLikes.RemoveRange(commentLikes);
-
-        var comments = await _context.Comments
+        // 4. Удаляем комментарии
+        await _context.Comments
             .Where(c => c.PostId == id)
-            .ToListAsync();
+            .ExecuteDeleteAsync();
 
-        _context.Comments.RemoveRange(comments);
-
-        var postLikes = await _context.Likes
+        // 5. Удаляем лайки поста
+        await _context.Likes
             .Where(l => l.PostId == id)
-            .ToListAsync();
+            .ExecuteDeleteAsync();
 
-        _context.Likes.RemoveRange(postLikes);
-
-        var favorites = await _context.Favorites
+        // 6. Удаляем избранное
+        await _context.Favorites
             .Where(f => f.PostId == id)
-            .ToListAsync();
+            .ExecuteDeleteAsync();
 
-        _context.Favorites.RemoveRange(favorites);
-
+        // 7. Удаляем сам пост
         _context.Posts.Remove(post);
 
         await _context.SaveChangesAsync();

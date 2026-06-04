@@ -795,11 +795,11 @@
 }
 
 .admin-no-active-reports {
+  flex: 1;
+
   display: flex;
   align-items: center;
   justify-content: center;
-
-  min-height: 180px;
 
   text-align: center;
 
@@ -807,6 +807,7 @@
   font-size: 18px;
   font-weight: 700;
 }
+
 .admin-card-header button {
   transition:
     color 0.2s ease,
@@ -845,6 +846,59 @@
   box-shadow:
     0 10px 30px rgba(255, 103, 166, 0.12),
     0 4px 12px rgba(255, 103, 166, 0.08);
+}
+.admin-middle-layout {
+  align-items: stretch;
+}
+
+.admin-chart-card,
+.admin-reports-card {
+  height: 380px;
+}
+
+.admin-reports-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.admin-reports-card .admin-card-header {
+  flex-shrink: 0;
+  margin-bottom: 18px;
+}
+
+#adminActiveReportsList {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  padding-right: 8px;
+}
+
+#adminActiveReportsList .admin-report-item {
+  min-height: 86px;
+  flex-shrink: 0;
+
+  padding: 14px 0;
+}
+
+#adminActiveReportsList::-webkit-scrollbar {
+  width: 6px;
+}
+
+#adminActiveReportsList::-webkit-scrollbar-track {
+  background: #fff0f7;
+  border-radius: 999px;
+}
+
+#adminActiveReportsList::-webkit-scrollbar-thumb {
+  background: #ffbcd8;
+  border-radius: 999px;
 }
 
 .admin-chart-container {
@@ -1646,31 +1700,3 @@ a {
   }
 }
 
-/* Темная тема */
-
-body.dark-theme .confirm-overlay {
-  background: rgba(15, 10, 25, 0.65);
-}
-
-body.dark-theme .confirm-box {
-  background: #271F38;
-
-  border: 1px solid rgba(254, 182, 231, 0.15);
-
-  box-shadow:
-    0 20px 40px rgba(0, 0, 0, 0.4),
-    0 0 0 1px rgba(254, 182, 231, 0.05);
-}
-
-body.dark-theme .confirm-box h2 {
-  color: #FEB6E7;
-}
-
-body.dark-theme .confirm-box p {
-  color: #D9C4F0;
-}
-
-body.dark-theme .confirm-cancel {
-  background: rgba(254, 182, 231, 0.12);
-  color: #FEB6E7;
-}

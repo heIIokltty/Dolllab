@@ -2503,9 +2503,13 @@ body.dark-theme.feed-post-image {
 .profile-reviews-panel {
   background: white;
   border-radius: 28px;
-  padding: 28px 32px;
+
+  padding: 24px 20px;
+
   min-height: 360px;
-  box-shadow: 0 6px 24px rgba(255, 103, 166, 0.14);
+
+  box-shadow:
+    0 6px 24px rgba(255, 103, 166, 0.14);
 }
 
 .profile-reviews-panel h2 {
@@ -2515,7 +2519,7 @@ body.dark-theme.feed-post-image {
 }
 
 .profile-review-item {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .profile-review-name {
@@ -2528,6 +2532,7 @@ body.dark-theme.feed-post-image {
 .profile-review-stars {
   display: flex;
   gap: 8px;
+  margin-bottom: 2px;
 }
 
 .profile-shop-card:hover .shop-card-overlay {
@@ -2907,11 +2912,12 @@ body.dark-theme.feed-post-image {
 }
 
 .profile-review-text {
-  margin-top: 8px;
+  margin-top: 2px;
   color: #FF98C1;
-  font-size: 14px;
-  line-height: 1.35;
+  font-size: 20px;
+  line-height: 1.2;
   white-space: pre-wrap;
+  margin-left: -20px;
 }
 
 .profile-empty-reviews {
@@ -2938,8 +2944,8 @@ body.dark-theme.feed-post-image {
 }
 
 .review-stars-input img {
-  width: 34px;
-  height: 34px;
+  width: 30px;
+  height: 30px;
   cursor: pointer;
   transition: transform 0.2s;
 }
@@ -5678,7 +5684,6 @@ button,
   }
 }
 
-/* Безопасные размеры для больших экранов */
 @media (min-width: 1400px) {
   .main {
     padding-left: 32px;
@@ -5694,7 +5699,6 @@ button,
   }
 }
 
-/* Ноутбуки и небольшие десктопы */
 @media (max-width: 1280px) {
   .dolls-grid {
     grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
